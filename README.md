@@ -1,3 +1,8 @@
+A cheap edit of AssetStudio that allows extraction of Texture2D using console arguments.
+* Use `-o <directory>` to define the output directory, to which the Texture2D objects should be extracted to.
+* Pass additional directory and file paths as arguments for the assets that should be extracted, in case of directory all files in that directory will be extracted.
+* If started with less than three arguments it will simply open the GUI.
+
 # AssetStudio
 [![Build status](https://ci.appveyor.com/api/projects/status/rnu7l90422pdewx4?svg=true)](https://ci.appveyor.com/project/Perfare/assetstudio/branch/master/artifacts)
 
