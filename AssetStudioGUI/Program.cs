@@ -29,6 +29,7 @@ namespace AssetStudioGUI
         }
         static void ExecuteNoGUI(string[] args)
         {
+            bool all_assets = false;
             string savepath = null;
             List<string> folder = new List<string>();
             List<string> files = new List<string>();
@@ -36,7 +37,11 @@ namespace AssetStudioGUI
             for (uint i = 0; i < args.Length; i++)
             {
                 string arg = args[i];
-                if (arg.StartsWith("-o"))
+                if(arg.StartsWith("-a"))
+                {
+                    all_assets = true;
+                }
+                else if (arg.StartsWith("-o"))
                 {
                     if (++i < args.Length)
                         savepath = args[i];
@@ -81,8 +86,12 @@ namespace AssetStudioGUI
             List<AssetItem> assets = new List<AssetItem>();
             foreach (var asset in exportableAssets)
             {
-                if (asset.Type == AssetStudio.ClassIDType.Texture2D)
-                    assets.Add(asset);
+                if(!all_assets)
+                {
+                    if (asset.Type != AssetStudio.ClassIDType.Texture2D)
+                        continue;
+                }
+                assets.Add(asset);
             }
 
             ExportAssets(savepath, assets, ExportType.Convert);
